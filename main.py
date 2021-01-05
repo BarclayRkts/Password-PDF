@@ -1,18 +1,15 @@
 import os
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from PyPDF2 import PdfFileReader, PdfFileWriter
-import shutil
 from pathlib import Path
-import time
 
-#E:\Documents\FilestoEncrypt
-# E:\Documents\TestFile
 
 def getFile(password):
-    file_location = 'E:\Documents\FilestoEncrypt'
 
-    for root, subdirs, files in os.walk(file_location):
+    # The location of the PDF files you want to add a password to. Ex: E:\Documents\FilesToAddPasswordto
+    file_location = '----------Fill----------' 
+    
+    # goes through all files in directory (file_location).
+    for root, subdirs, files in os.walk(file_location): 
 
         for file in files:
             print("file: " + file)
@@ -36,9 +33,10 @@ def Encrypt(password, file, file_location, root):
     # Encrypt with your password
     pdfWriter.encrypt(password)
 
-    # Write it to an output file. (you can delete unencrypted version now)
     file_name = os.path.splitext(str(file))
-    resultPdf = open('E:\\Documents\EncryptFiles\\' + file_name[0] + '_encrypted' + file_name[1], 'wb')
+
+    # The location you want to store the PDF files Ex: E:\Documents\NewFiles
+    resultPdf = open('----------Fill----------' + file_name[0] + '_encrypted' + file_name[1], 'wb')
     pdfWriter.write(resultPdf)
     print(resultPdf)
     resultPdf.close()
@@ -46,6 +44,5 @@ def Encrypt(password, file, file_location, root):
 
 
 password = input("Give the pdfs a password: ")
-# password = "Hello"
 getFile(password)
 
